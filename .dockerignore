@@ -1,0 +1,9 @@
+node_modules
+.next
+.env.local
+.git
+ssl
+Compose
+Compose-Generator
+PgBouncer
+notes

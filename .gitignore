@@ -6,8 +6,15 @@
 *.orig
 ssl/
 .env
+.env.local
 *.7z
 Compose/*/compose.yml
 logs/
 /.vs
 **/.DS_Store
+node_modules/
+.next/
+token.json
+output.json
+swagger.json
+bun.lockb
