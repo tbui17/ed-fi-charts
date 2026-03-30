@@ -28,3 +28,8 @@ jobs:
           ./validate-compose-files.ps1
         working-directory: .
         shell: pwsh
+
+      - name: Validate root compose files
+        run: |
+          docker compose -f docker-compose.yml --env-file .env.validation config -q
+          docker compose -f docker-compose.prod.yml --env-file .env.validation config -q

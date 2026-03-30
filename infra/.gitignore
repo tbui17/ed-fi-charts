@@ -3,3 +3,5 @@
 *.tfstate.backup
 *.auto.tfvars
 *.tfplan
+tfplan
+sql.tar
