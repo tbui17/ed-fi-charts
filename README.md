@@ -1,5 +1,7 @@
 # Ed-Fi ODS Data Warehouse Prototype
 
+**Live demo: https://edfi.tbui17.com/**
+
 A CEDS-aligned star schema warehouse and demographics web application built on top of the Ed-Fi ODS v7 sandbox. Demonstrates the ODS-to-CEDS translation layer: extracting student, school, and enrollment data from the Ed-Fi operational data store and transforming it into analytical warehouse tables.
 
 ## What This Demonstrates
