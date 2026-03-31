@@ -1,7 +1,6 @@
 variable "hcloud_token" {
   description = "Hetzner Cloud API token"
   type        = string
-  sensitive   = true
 }
 
 variable "ssh_public_key_path" {
@@ -13,7 +12,7 @@ variable "ssh_public_key_path" {
 variable "server_type" {
   description = "Hetzner server type"
   type        = string
-  default     = "cpx21"
+  default     = "cpx11"
 }
 
 variable "location" {
@@ -36,13 +35,11 @@ variable "ghcr_user" {
 variable "ghcr_token" {
   description = "GitHub Container Registry PAT (read:packages)"
   type        = string
-  sensitive   = true
 }
 
 variable "cloudflare_api_token" {
   description = "Cloudflare API token with DNS edit permissions"
   type        = string
-  sensitive   = true
 }
 
 variable "cloudflare_zone_id" {
