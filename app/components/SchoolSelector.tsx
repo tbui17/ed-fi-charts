@@ -38,49 +38,74 @@ export function SchoolSelector({ data }: { data: DemographicRow[] }) {
     [data, selectedDistrict, selectedSchool]
   )
 
-  return (
-    <div>
-      <div style={{ display: "flex", gap: "1rem", marginBottom: "2rem" }}>
-        <label>
-          District:{" "}
-          <select
-            value={selectedDistrict}
-            onChange={(e) => {
-              setSelectedDistrict(e.target.value)
-              const schools = [
-                ...new Set(
-                  data
-                    .filter((r) => r.district_name === e.target.value)
-                    .map((r) => r.school_name)
-                ),
-              ].sort()
-              setSelectedSchool(schools[0] ?? "")
-            }}
-          >
-            {districts.map((d) => (
-              <option key={d} value={d}>
-                {d}
-              </option>
-            ))}
-          </select>
-        </label>
+  const totalEnrolled = useMemo(() => {
+    const firstType = filteredData[0]?.type
+    if (!firstType) return 0
+    return filteredData
+      .filter((r) => r.type === firstType)
+      .reduce((sum, r) => sum + Number(r.count), 0)
+  }, [filteredData])
 
-        <label>
-          School:{" "}
-          <select
-            value={selectedSchool}
-            onChange={(e) => setSelectedSchool(e.target.value)}
-          >
-            {schoolsInDistrict.map((s) => (
-              <option key={s} value={s}>
-                {s}
-              </option>
-            ))}
-          </select>
-        </label>
+  return (
+    <>
+      <div className="toolbar">
+        <div className="field">
+          <span className="field-label">District</span>
+          <div className="select-wrap">
+            <select
+              className="select"
+              value={selectedDistrict}
+              onChange={(e) => {
+                setSelectedDistrict(e.target.value)
+                const schools = [
+                  ...new Set(
+                    data
+                      .filter((r) => r.district_name === e.target.value)
+                      .map((r) => r.school_name)
+                  ),
+                ].sort()
+                setSelectedSchool(schools[0] ?? "")
+              }}
+            >
+              {districts.map((d) => (
+                <option key={d} value={d}>
+                  {d}
+                </option>
+              ))}
+            </select>
+            <svg className="select-chevron" viewBox="0 0 16 16" fill="none">
+              <path d="M4 6l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </div>
+        </div>
+
+        <div className="field">
+          <span className="field-label">School</span>
+          <div className="select-wrap">
+            <select
+              className="select"
+              value={selectedSchool}
+              onChange={(e) => setSelectedSchool(e.target.value)}
+            >
+              {schoolsInDistrict.map((s) => (
+                <option key={s} value={s}>
+                  {s}
+                </option>
+              ))}
+            </select>
+            <svg className="select-chevron" viewBox="0 0 16 16" fill="none">
+              <path d="M4 6l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </div>
+        </div>
+
+        <div className="toolbar-stat">
+          <span className="stat-value">{totalEnrolled.toLocaleString()}</span>
+          <span className="stat-label">Enrolled</span>
+        </div>
       </div>
 
       <DemographicsChart data={filteredData} />
-    </div>
+    </>
   )
 }
