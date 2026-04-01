@@ -13,5 +13,4 @@ logs/
 **/.DS_Store
 node_modules/
 .next/
-bun.lockb
 notes/
